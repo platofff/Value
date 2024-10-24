@@ -27,7 +27,7 @@ namespace Value
     /// </summary>
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="T">Type of the listed items.</typeparam>
-    public class ListByValue<T> : EquatableByValue<ListByValue<T>>, IList<T>
+    public class ListByValue<T> : EquatableByValue<ListByValue<T>>, IList<T>, IReadOnlyList<T>
     {
         private readonly IList<T> list;
 

@@ -27,7 +27,7 @@ namespace Value.Shared
     /// <remarks>This type is not thread-safe (for hashcode updates).</remarks>
     /// <typeparam name="K">The type of keys in the dictionary.</typeparam>
     /// <typeparam name="V">The type of values in the dictionary.</typeparam>
-    public class DictionaryByValue<K, V> : EquatableByValueWithoutOrder<DictionaryByValue<K, V>>, IDictionary<K, V>
+    public class DictionaryByValue<K, V> : EquatableByValueWithoutOrder<DictionaryByValue<K, V>>, IDictionary<K, V>, IReadOnlyDictionary<K, V>
     {
         private readonly IDictionary<K, V> dictionary;
 
@@ -132,5 +132,9 @@ namespace Value.Shared
         public ICollection<K> Keys => dictionary.Keys;
 
         public ICollection<V> Values => dictionary.Values;
+
+        IEnumerable<K> IReadOnlyDictionary<K, V>.Keys => dictionary.Keys;
+
+        IEnumerable<V> IReadOnlyDictionary<K, V>.Values => dictionary.Values;
     }
 }
